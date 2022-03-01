@@ -1,0 +1,15 @@
+#!/bin/bash
+
+commands="
+cache:clear
+config:clear
+event:clear
+optimize:clear
+route:clear
+view:clear
+schedule:clear-cache
+"
+
+for each_cmd in $commands; do
+   artisan $each_cmd
+done
