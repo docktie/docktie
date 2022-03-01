@@ -77,3 +77,7 @@ a `postgres` service:
 ##
 ## Test and enjoy!
 ```
+
+# Limitation
+
+Your project must be described in docker-compose format. Pure Dockerfile is not supported (well, you can send a Pull Request).
