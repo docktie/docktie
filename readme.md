@@ -43,6 +43,8 @@ Assuming your project is named `cooltool`, create corresponding `_env` file
 ~$ ../docktie/init.sh
 NOTE: DockTie Dev Helper initialized.
       Tools are currently inside /my/work/docktie/utils
+
+(docktie) ~$
 ```
 
 NOTE: It has to be run from within your project. Otherwise, you will see this error:
