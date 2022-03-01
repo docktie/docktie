@@ -39,6 +39,20 @@ NOTE: DockTie Dev Helper initialized.
       Tools are currently inside /my/work/docktie/utils
 ```
 
+NOTE: It has to be run from within your project. Otherwise, you will see this error:
+```
+~$ pwd
+/my/work/project/docktie
+~$ ./init.sh
+ERROR: 'init.sh' must be called from within project directory.
+```
+To fix, go to your project directory just like what step 3 is showing above.
+
+# When you're done
+Simply run the command from anywhere:
+```
+exit
+```
 
 # Utils Customization
 
