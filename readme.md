@@ -4,11 +4,13 @@ Is a simple wrapper script for commands that resides in docker containers.
 
 So for instance, what you would normally run as:
 
-     `docker-compose exec node node --v`
-
+```
+     docker-compose exec node node --v
+```
 becomes:
-
-     `node --version`
+```
+     node --version
+```
 
 after tool is configured and initialized.
 
