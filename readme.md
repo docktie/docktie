@@ -68,7 +68,7 @@ DockTie Dev Helper exited.
 
 # Utils Customization
 
-The `utils` are inside "utils" directory. Focus only on the core script `utils/core`.
+The `utils` are inside "utils" directory. Focus only on the core script `utils/kernel/core`.
 This was initially made for a laravel project.
 
 Follow the pattern in core and add the corresponding service. For example, if you have
@@ -77,7 +77,7 @@ a `postgres` service:
 ```
 ~$ pwd
 /my/work/projects/docktie/utils
-~$ cp artisan postgres
+~$ ln -s shell postgres
 ## ...
 ## ...
 ## ...
@@ -88,6 +88,24 @@ a `postgres` service:
 ##        ;;
 ##
 ```
+
+Notice that in majority of utils, only shell (utils/shell) is actually calling the core (utils/kernel/core).
+This is because, only the script name matters.
+
+```
+~$ nl -ba utils/shell
+     1  #!/bin/bash
+     2
+     3  $(dirname $0)/kernel/core $(basename $0) $*
+```
+
+In line 3 above,
+```
+$(basename $0)
+```
+is the script name which works for symbolic links too. This makes maintenance easier and can be automated later
+when the enhancement issue "#1 (Possible decoupling of services handled)" is fully implemented.
+
 Test and enjoy!
 
 # Limitation

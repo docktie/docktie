@@ -1,3 +1,1 @@
-#!/bin/bash
-
-core $(basename $0) $*
+shell
