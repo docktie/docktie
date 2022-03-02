@@ -68,26 +68,48 @@ DockTie Dev Helper exited.
 
 # Utils Customization
 
-The `utils` are inside "utils" directory. Focus only on the core script `utils/core`.
-This was initially made for a laravel project.
+## Utils Structure
+The `utils` are inside "utils" directory.
 
-Follow the pattern in core and add the corresponding service. For example, if you have
-a `postgres` service:
+Notice that in majority of utils, only shell (utils/shell) is actually calling the core (utils/kernel/core).
+This is because, only the script name matters.
 
+```
+~$ nl -ba utils/shell
+     1  #!/bin/bash
+     2
+     3  $(dirname $0)/kernel/core $(basename $0) $*
+```
+
+In line 3 above,
+```
+$(basename $0)
+```
+is the script name which works for symbolic links too. This makes maintenance easier and can be automated later
+when the enhancement issue "#1 (Possible decoupling of services handled)" is fully implemented.
+
+Now on the util kernel side, `utils/kernel/core`. This is also including files from it's config directory.
+So `utils/shell` has a corresponding `utils/kernel/conf/shell.conf`.
+
+## Utils Example
+For a concrete example, say you want to add a `postgres` util.
+
+All you have to do is:
+
+1. Add the symlink
 ```
 ~$ pwd
 /my/work/projects/docktie/utils
-~$ cp artisan postgres
-## ...
-## ...
-## ...
-## Then, in 'core' case statement before the '*)', create the following:
-##         postgres)
-##           docker_service_name='postgres'
-##           command_within_service="$docker_service_name"
-##        ;;
-##
+~$ ln -s shell postgres
+~$
 ```
+
+2. And the kernel config file `utils/kernel/conf/postgres.conf` with below contents:
+```
+docker_service_name='postgres'
+command_within_service="$docker_service_name"
+```
+
 Test and enjoy!
 
 # Limitation
