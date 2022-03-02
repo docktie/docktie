@@ -1,13 +1,13 @@
 # What is DockTie
 
-Is a simple wrapper script for commands that resides in docker containers.
+Is a simple wrapper script for commands inside docker container(s).
 
 So for instance, what you would normally run as:
 
 ```
      docker-compose exec node node --v
 ```
-becomes:
+becomes
 ```
      node --version
 ```
@@ -20,7 +20,7 @@ after tool is configured and initialized.
 
 ```
 ~$ pwd
-/my/work/project/
+/my/work/projects/
 
 ~$ git clone https://github.com/icasimpan/docktie.git
 ```
@@ -30,7 +30,7 @@ after tool is configured and initialized.
 Assuming your project is named `cooltool`, create corresponding `_env` file
 ```
 ~$ pwd
-/my/work/project/
+/my/work/projects/
 ~$ cd docktie
 ~$ cp conf/env.sample conf/cooltool_env ## change the variables accordingly.
 ```
@@ -39,40 +39,44 @@ Assuming your project is named `cooltool`, create corresponding `_env` file
 
 ```
 ~$ pwd
-/my/work/project/cooltool
+/my/work/projects/cooltool
 ~$ ../docktie/init.sh
 NOTE: DockTie Dev Helper initialized.
-      Tools are currently inside /my/work/docktie/utils
+      Tools are currently inside /my/work/projects/docktie/utils
 
 (docktie) ~$
 ```
+You will get a visual indicator "(docktie)" in your CLI prompt once you successfully initialized the tool.
 
 NOTE: It has to be run from within your project. Otherwise, you will see this error:
 ```
 ~$ pwd
-/my/work/project/docktie
+/my/work/projects/docktie
 ~$ ./init.sh
 ERROR: 'init.sh' must be called from within project directory.
 ```
-To fix, go to your project directory just like what step 3 is showing above.
 
 # When you're done
-Simply run the command from anywhere:
+Simply run the `exit` command:
 ```
+(docktie) ~$ exit
 exit
+DockTie Dev Helper exited.
+
+~$
 ```
 
 # Utils Customization
 
 The `utils` are inside "utils" directory. Focus only on the core script `utils/core`.
-This was made for a laravel project but can be configured for other services.
+This was initially made for a laravel project.
 
-Follow the pattern in core and create corresponding service. For example, if you have 
+Follow the pattern in core and add the corresponding service. For example, if you have
 a `postgres` service:
 
 ```
 ~$ pwd
-/my/work/project/docktie/utils
+/my/work/projects/docktie/utils
 ~$ cp artisan postgres
 ## ...
 ## ...
@@ -83,9 +87,13 @@ a `postgres` service:
 ##           command_within_service="$docker_service_name"
 ##        ;;
 ##
-## Test and enjoy!
 ```
+Test and enjoy!
 
 # Limitation
 
-Your project must be described in docker-compose format. Pure Dockerfile is not supported (well, you can send a Pull Request).
+Your project must be described in docker-compose format. Pure Dockerfile is not supported yet.
+
+# Pull Requests
+
+Send in Pull Request(s) if you have ideas or saw bugs. Thanks in advance :)
