@@ -18,7 +18,7 @@ SCRIPT_CONF="$(dirname $0)/conf/${script_name}.conf"
 if [[ -e "$SCRIPT_CONF" ]]; then
     . $SCRIPT_CONF
 else
-    echo "ERROR: Unknown util name. See 'conf/artisan.conf' for reference in creating one."
+    echo "ERROR: Unconfigured util name ($script_name). See 'conf/artisan.conf' for reference in creating one."
     echo
     exit 1;
 fi
