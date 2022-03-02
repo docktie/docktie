@@ -41,7 +41,7 @@ if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | 
       export DOCKTIE_INIT=true
       TOOLS_DIR=$DOCKTIE_DIR/utils
       echo "NOTE: DockTie Dev Helper initialized."
-      echo "      Tools are currently inside $TOOLS_DIR"
+      echo "      Utils($TOOLS_DIR) prioritized in \$PATH"
       echo
       export PATH=$TOOLS_DIR:$PATH
       export DOCKER_CONTAINER_PREFIX=$DOCKER_CONTAINER_PREFIX  ## needed in ps1 change visibility done in next line

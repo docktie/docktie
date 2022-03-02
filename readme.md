@@ -42,7 +42,7 @@ Assuming your project is named `cooltool`, create corresponding `_env` file
 /my/work/projects/cooltool
 ~$ ../docktie/init.sh
 NOTE: DockTie Dev Helper initialized.
-      Tools are currently inside /my/work/projects/docktie/utils
+      Utils(/my/work/projects/docktie/utils) prioritized in $PATH
 
 (docktie > cooltool) ~$
 ```
@@ -85,14 +85,13 @@ In line 3 above,
 ```
 $(basename $0)
 ```
-is the script name which works for symbolic links too. This makes maintenance easier and can be automated later
-when the enhancement issue "#1 (Possible decoupling of services handled)" is fully implemented.
+is the script name which works for symbolic links too. This makes maintenance easier and can be automated later.
 
-Now on the util kernel side, `utils/kernel/core`. This is also including files from it's config directory.
-So `utils/shell` has a corresponding `utils/kernel/conf/shell.conf`.
+Now on the utils kernel side `utils/kernel/core`, a corresponding config is also expected and sourced/included.
+So `utils/shell` MUST have a corresponding `utils/kernel/conf/shell.conf`.
 
 ## Utils Example
-For a concrete example, say you want to add a `postgres` util.
+For a concrete example, say you want to add a `psql` util located on `postgres` container/service.
 
 All you have to do is:
 
@@ -107,7 +106,7 @@ All you have to do is:
 2. And the kernel config file `utils/kernel/conf/postgres.conf` with below contents:
 ```
 docker_service_name='postgres'
-command_within_service="$docker_service_name"
+command_within_service="psql"
 ```
 
 Test and enjoy!
