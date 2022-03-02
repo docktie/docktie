@@ -13,42 +13,15 @@ fi
 ## Environment OK, proceed...
 script_name=$1
 shift
-case $script_name in
-	artisan)
-	   docker_service_name='php'
-	   command_within_service='php artisan'
-	;;
 
-        npm)
-	   docker_service_name='node'
-	   command_within_service='npm'
-	;;
-
-        mysql)
-	   docker_service_name='mysql'
-	   command_within_service="$docker_service_name"
-	;;
-
-        composer)
-	   docker_service_name='composer'
-	   command_within_service="$docker_service_name"
-        ;;
-        shell)
-	   docker_service_name="$1"
-	   command_within_service="sh"
-           shift ## remove remaining CLI parameters. They aren't needed.
-           echo '+----------------------------------------------+'
-           echo "| Shell-ing into service '$docker_service_name'"
-           echo "|    Use 'exit' to get off.                    "
-           echo '+----------------------------------------------+'
-        ;;
-
-        *)
-	   echo "ERROR: Invalid usage. See 'artisan' code for details."
-	   echo
-	   exit 1;
-	;;
-esac
+SCRIPT_CONF="$(dirname $0)/conf/${script_name}.conf"
+if [[ -e "$SCRIPT_CONF" ]]; then
+    . $SCRIPT_CONF
+else
+    echo "ERROR: Unknown util name. See 'conf/artisan.conf' for reference in creating one."
+    echo
+    exit 1;
+fi
 
 ## ------
 ## main()
