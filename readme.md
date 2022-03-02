@@ -44,7 +44,7 @@ Assuming your project is named `cooltool`, create corresponding `_env` file
 NOTE: DockTie Dev Helper initialized.
       Tools are currently inside /my/work/projects/docktie/utils
 
-(docktie) ~$
+(docktie > cooltool) ~$
 ```
 You will get a visual indicator "(docktie)" in your CLI prompt once you successfully initialized the tool.
 
@@ -59,7 +59,7 @@ ERROR: 'init.sh' must be called from within project directory.
 # When you're done
 Simply run the `exit` command:
 ```
-(docktie) ~$ exit
+(docktie > cooltool) ~$ exit
 exit
 DockTie Dev Helper exited.
 
