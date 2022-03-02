@@ -44,6 +44,7 @@ if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | 
       echo "      Tools are currently inside $TOOLS_DIR"
       echo
       export PATH=$TOOLS_DIR:$PATH
+      export DOCKER_CONTAINER_PREFIX=$DOCKER_CONTAINER_PREFIX  ## needed in ps1 change visibility done in next line
       bash --rcfile <(cat $CONF_DIR/ps1_changer)
       ## Below will run after 'exit' command
       echo "DockTie Dev Helper exited."
