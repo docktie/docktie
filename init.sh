@@ -31,7 +31,15 @@ export DOCKTIE_ENV="$ENV_FILE"
 . $DOCKTIE_ENV
 
 ## Docker container(s) running...
-export DOCKTIE_DOCKER_COMPOSE_FULLPATH="$(pwd)/docker-compose.yml"
+
+## Implement https://github.com/icasimpan/docktie/issues/11
+##           Add relative custom location of docker-compose.yml per project
+##
+DOCKERCOMPOSE_FULLPARENT_DIR="$(pwd)"
+# https://stackoverflow.com/questions/18096670/what-does-z-mean-in-bash
+[[ -z $RELATIVE_DOCKERCOMPOSE_DIR ]] && DOCKERCOMPOSE_FULLPARENT_DIR="$(pwd)/${RELATIVE_DOCKERCOMPOSE_DIR}"
+
+export DOCKTIE_DOCKER_COMPOSE_FULLPATH="${DOCKERCOMPOSE_FULLPARENT_DIR}/docker-compose.yml"
 if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | grep -cv exit)" -gt 0 ]]; then
    if [[ "$DOCKTIE_INIT" = "true" ]]; then
       echo "ERROR: DockTie Dev Helper already initialized."
