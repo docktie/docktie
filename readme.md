@@ -34,6 +34,7 @@ Assuming your project is named `cooltool`, create corresponding `_env` file
 ~$ cd docktie
 ~$ cp conf/env.sample conf/cooltool_env ## change the variables accordingly.
 ```
+NOTE: check `conf/env.sample`. Depending on your site structure, you may need to define `RELATIVE_DOCKERCOMPOSE_DIR`.
 
 3. And initialize:
 
