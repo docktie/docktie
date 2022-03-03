@@ -47,7 +47,7 @@ NOTE: DockTie Dev Helper initialized.
 
 (docktie > cooltool) ~$
 ```
-You will get a visual indicator "(docktie)" in your CLI prompt once you successfully initialized the tool.
+You will get a visual indicator like "(docktie > cooltool)" in your CLI prompt once you successfully initialized.
 
 NOTE: It has to be run from within your project. Otherwise, you will see this error:
 ```
