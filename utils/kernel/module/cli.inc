@@ -48,7 +48,7 @@ cli() {
         ;;
  
         ## works!
-        shell)
+        shell|sh)
           __shell $*
         ;; 
 
@@ -59,12 +59,12 @@ cli() {
         ;;
 
         ## works!
-        cp)
+        cp|copy)
            __cp $*
         ;;
 
         ## works!
-        logs)
+        logs|log)
            __logs $*
         ;;
 
