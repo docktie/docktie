@@ -42,7 +42,7 @@ DOCKERCOMPOSE_FULLPARENT_DIR="$(pwd)"
 export DOCKTIE_DOCKER_COMPOSE_FULLPATH="${DOCKERCOMPOSE_FULLPARENT_DIR}/docker-compose.yml"
 if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | grep -cv exit)" -gt 0 ]]; then
    if [[ "$DOCKTIE_INIT" = "true" ]]; then
-      echo "ERROR: DockTie Dev Helper already initialized."
+      echo "ERROR: DockTie Dev Helper already initialized for '${PROJECT_NAME}'."
       echo "       Type 'exit' if you want to re-initialize."
       echo
    else
