@@ -7,7 +7,7 @@ __shell() {
          echo "| Shell-ing into service '$container'          "
          echo "|    Use 'exit' to get off.                    "
          echo '+----------------------------------------------+'
-         $DOCKER_COMPOSE_BIN exec $container sh
+         $DOCKER_COMPOSE_BIN exec $container bash
      else
          echo "[INFO] Cannot shell into '$container' as it is not running..."
      fi

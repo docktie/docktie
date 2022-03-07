@@ -1,3 +1,8 @@
+## Copies file src to dest, either of them being local (relative to current location)
+## or container-located in format (container_name:/path/to/dest).
+##
+## Usage: docktie_cli cp <src> <dest>
+##
 __cp() {
     local src=$1
     local dest=$2
