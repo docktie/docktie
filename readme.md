@@ -70,16 +70,27 @@ DockTie Dev Helper exited.
 # Utils Customization
 
 ## Utils Structure
-The `utils` are inside "utils" directory.
+The `utils` are inside "utils/bin" directory.
 
-Notice that in majority of utils, only shell (utils/shell) is actually calling the core (utils/kernel/core).
+Notice that in majority of utils, only docktie_cli (utils/docktie_cli) is actually calling the core (lib/kernel/core.bash.inc).
 This is because, only the script name matters.
 
 ```
-~$ nl -ba utils/shell
+~$ nl -ba utils/bin/docktie_cli
      1  #!/bin/bash
      2
-     3  $(dirname $0)/kernel/core $(basename $0) $*
+     3  ## -------- source common library ---------
+     4  PROJECT_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+     5  . $PROJECT_ROOTDIR/etc/controller.bash.inc
+     6
+     7
+     8  ## list of functions to auto-load
+     9  autoload_functions "kernel/core"
+    10
+    11  ## ..............................
+    12  ## main utility tool starts below
+    13  ## ..............................
+    14  core $(basename $0) $*
 ```
 
 In line 3 above,
@@ -88,8 +99,9 @@ $(basename $0)
 ```
 is the script name which works for symbolic links too. This makes maintenance easier and can be automated later.
 
-Now on the utils kernel side `utils/kernel/core`, a corresponding config is also expected and sourced/included.
-So `utils/shell` MUST have a corresponding `utils/kernel/conf/shell.conf`.
+Now on the utils kernel side `lib/kernel/core.bash.inc`, except for docktie_cli, a corresponding config is
+also expected and sourced/included. So `utils/bin/artisan` MUST have a corresponding `etc/docktie/utils/artisan.conf`.
+
 
 ## Utils Example
 For a concrete example, say you want to add a `psql` util located on `postgres` container/service.
@@ -99,12 +111,12 @@ All you have to do is:
 1. Add the symlink
 ```
 ~$ pwd
-/my/work/projects/docktie/utils
-~$ ln -s shell postgres
+/my/work/projects/docktie/utils/bin
+~$ ln -s docktie_cli postgres
 ~$
 ```
 
-2. And the kernel config file `utils/kernel/conf/postgres.conf` with below contents:
+2. And the kernel config file `etc/docktie/postgres.conf` with below contents:
 ```
 docker_service_name='postgres'
 command_within_service="psql"
@@ -119,3 +131,8 @@ Your project must be described in docker-compose format. Pure Dockerfile is not 
 # Pull Requests
 
 Send in Pull Request(s) if you have ideas or saw bugs. Thanks in advance :)
+
+# Credits
+
+As utils part of the tool grow, so does the dependency hell becoming more obvious.
+It was thus refactored to follow the [SHCF](https://github.com/icasimpan/shcf.git) way.

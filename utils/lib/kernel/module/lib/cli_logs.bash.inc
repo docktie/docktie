@@ -1,5 +1,5 @@
 ## all containers parameter is possible
-__logs() {
+cli_logs() {
    local container=$1
    local silent=${2,,}   ## value allowed: 'silent' or 'quiet'
 
@@ -25,4 +25,4 @@ __logs() {
             echo "[INFO] Cannot show logs for container '$container' as it is not running..."
         fi
     fi
-} ## END: __logs()
+} ## END: cli_logs()

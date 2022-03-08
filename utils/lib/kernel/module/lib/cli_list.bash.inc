@@ -1,3 +1,3 @@
-__list() {
+cli_list() {
   echo "<TBD here> docktie_cli list"
-} ## END: __list()
+} ## END: cli_list()

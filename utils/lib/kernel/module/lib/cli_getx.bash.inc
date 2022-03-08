@@ -1,3 +1,3 @@
-__getx() {
+cli_getx() {
   echo "<TBD here> docktie_cli getx"
-} ## END: __getx()
+} ## END: cli_getx()

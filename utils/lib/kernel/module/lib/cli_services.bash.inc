@@ -1,4 +1,4 @@
-__services() {
+cli_services() {
       local service_type=$*
 
       srv_state=$service_type
@@ -14,4 +14,4 @@ __services() {
               echo " * $each_container"
           done
       done
-} ## END: __services()
+} ## END: cli_services()

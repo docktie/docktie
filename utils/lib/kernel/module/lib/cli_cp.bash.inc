@@ -3,9 +3,9 @@
 ##
 ## Usage: docktie_cli cp <src> <dest>
 ##
-__cp() {
+cli_cp() {
     local src=$1
     local dest=$2
 
     $DOCKER_COMPOSE_BIN cp $src $dest
-} ## END: __cp()
+} ## END: cli_cp()

@@ -1,4 +1,4 @@
-## NOTE: kernel module 'cli' (answering for 'docktie_cli' name) is being called from 'core'.
+## NOTE: kernel module 'cli' (answering for 'docktie_cli' name) is being called from 'core.bash.inc'.
 ##    Therefore, $0 /path/to/utils/kernel/core
 ##
 cli() {
@@ -26,50 +26,48 @@ cli() {
     }
 
     lib2include="
-      __cp
-      __logs
-      __shell
-      __services
-      __help
-      __list
-      __getx
+      kernel/module/lib/cli_cp
+      kernel/module/lib/cli_logs
+      kernel/module/lib/cli_shell
+      kernel/module/lib/cli_services
+      kernel/module/lib/cli_help
+      kernel/module/lib/cli_list
+      kernel/module/lib/cli_getx
     "
-    for each_lib in $lib2include; do
-        . $(dirname $0)/module/lib/cli/${each_lib}
-    done
+    autoload_functions "$lib2include"
 
     case $sub_cmd in
         help)
-          __help $*
+          cli_help $*
         ;;
 
         list)
-          __list $*
+          cli_list $*
         ;;
  
         ## works!
         shell|sh)
-          __shell $*
+          cli_shell $*
         ;; 
 
         ##    Default is show all (broken into running and NOT running)
         ##    Other option 'running' & 'not_running'
         services)
-          __services $* 
+          cli_services $* 
         ;;
 
         ## works!
         cp|copy)
-           __cp $*
+           cli_cp $*
         ;;
 
         ## works!
         logs|log)
-           __logs $*
+           cli_logs $*
         ;;
 
         getx)
-           __getx $*
+           cli_getx $*
         ;;
 
         *)

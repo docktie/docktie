@@ -1,4 +1,4 @@
-__shell() {
+cli_shell() {
      local container=$1
 
      container_alive=$(container_running $container)
@@ -11,4 +11,4 @@ __shell() {
      else
          echo "[INFO] Cannot shell into '$container' as it is not running..."
      fi
-} ## END __shell()
+} ## END cli_shell()

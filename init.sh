@@ -47,7 +47,7 @@ if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | 
       echo
    else
       export DOCKTIE_INIT=true
-      TOOLS_DIR=$DOCKTIE_DIR/utils
+      TOOLS_DIR=$DOCKTIE_DIR/utils/bin
       echo "NOTE: DockTie Dev Helper initialized."
       echo "      Utils($TOOLS_DIR) prioritized in \$PATH"
       echo

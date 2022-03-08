@@ -1,3 +1,3 @@
-__help() {
+cli_help() {
   echo "<TBD here> docktie_cli help"
-} ## END: __help()
+} ## END: cli_help()

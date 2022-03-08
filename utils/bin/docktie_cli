@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## -------- source common library ---------
+PROJECT_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+. $PROJECT_ROOTDIR/etc/controller.bash.inc
+
+
+## list of functions to auto-load
+autoload_functions "kernel/core"
+
+## ..............................
+## main utility tool starts below
+## ..............................
+core $(basename $0) $*
