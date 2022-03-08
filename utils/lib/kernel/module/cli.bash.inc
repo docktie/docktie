@@ -1,7 +1,7 @@
 ## NOTE: kernel module 'cli' (answering for 'docktie_cli' name) is sourced/included by 'core.bash.inc'.
 cli() {
-    local sub_cmd=${1,,}; shift ## Get 1st paramenter and convert to lowercase
-                                ## Then, pop-off from $*
+    local sub_cmd=${1:-"help"}; shift ## Get 1st parameter (defaults to 'help'). Then, pop-off from $*
+          sub_cmd=${sub_cmd,,}        ## ...ensure parameter is lowercase.
 
     DOCKER_COMPOSE_BIN="docker-compose -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH"
 
@@ -69,7 +69,7 @@ cli() {
         ;;
 
         *)
-           echo "Oops, unknown 'docktie_cli sub-command"
+           echo "Oops, unknown 'docktie_cli' sub-command"
         ;;
     esac
  

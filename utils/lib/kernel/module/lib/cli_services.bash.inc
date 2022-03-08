@@ -1,3 +1,11 @@
+##~ Shows services depending on status or all of them.
+##~
+##~ Usage: docktie_cli services <status>
+##~   where <status> is either
+##~     running     shows all running services
+##~     exited      shows all exited services
+##~     all         shows both running and exited (default)
+##~
 cli_services() {
       local service_type=$*
 

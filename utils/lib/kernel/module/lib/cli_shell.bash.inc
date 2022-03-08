@@ -1,3 +1,7 @@
+##~ Shells into an active service name. Uses 'bash'
+##~
+##~ Usage: docktie_cli shell <service_name>
+##~
 cli_shell() {
      local container=$1
 
