@@ -1,6 +1,4 @@
-## NOTE: kernel module 'cli' (answering for 'docktie_cli' name) is being called from 'core.bash.inc'.
-##    Therefore, $0 /path/to/utils/kernel/core
-##
+## NOTE: kernel module 'cli' (answering for 'docktie_cli' name) is sourced/included by 'core.bash.inc'.
 cli() {
     local sub_cmd=${1,,}; shift ## Get 1st paramenter and convert to lowercase
                                 ## Then, pop-off from $*

@@ -16,7 +16,6 @@ core() {
 	shift
 
 	## Every util except "docktie_cli" needs a config...
-	#SCRIPT_CONF="$(dirname $0)/conf/${script_name}.conf"
 	SCRIPT_CONF="$DOCKTIE_UTILS_CONF/${script_name}.conf"
 	if [[ "$script_name" != "docktie_cli" ]]; then
 		if [[ -e "$SCRIPT_CONF" ]]; then
@@ -37,13 +36,11 @@ core() {
 	   ;;
 
 	   "docktie_cli")
-		   #. $(dirname $0)/module/cli.inc
 		   cli $*
 	   ;;
 
 	   *)
-		   ## TODO: 'shell' will become a sub-command of `docktie_cli` later
-		   if [[ $# -eq 0 ]] && [[ "$script_name" != "shell" ]] ; then
+		   if [[ $# -eq 0 ]]; then
 			  echo "ERROR: parameter to '$script_name' missing."
 			  echo
 			  exit 1
