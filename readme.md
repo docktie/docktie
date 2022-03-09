@@ -134,4 +134,4 @@ Send in Pull Request(s) if you have ideas or saw bugs. Thanks in advance :)
 
 # Credits
 
-As tool grows, so does the its dependency hell. It was thus refactored for easier maintenance and followed the [SHCF](https://github.com/icasimpan/shcf.git)-way.
+As tool grows, so does its dependency hell. It was thus refactored for easier maintenance and followed the [SHCF](https://github.com/icasimpan/shcf.git)-way.
