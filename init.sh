@@ -38,6 +38,16 @@ export DOCKTIE_ENV="$ENV_FILE"
 DOCKERCOMPOSE_FULLPARENT_DIR="$(pwd)"
 [[ "$RELATIVE_DOCKERCOMPOSE_DIR" != "" ]] && DOCKERCOMPOSE_FULLPARENT_DIR="$(pwd)/${RELATIVE_DOCKERCOMPOSE_DIR}"
 
+## Make sure docker-compose is installed since it's needed by the wrapper utils/docker-compose
+DOCKTIE_DOCKER_COMPOSE_BIN="$(which docker-compose 2>/dev/null)"
+if [[ "$DOCKTIE_DOCKER_COMPOSE_BIN" = "" ]]; then
+    echo '[ERROR] docker-compose not found. Please make sure to install it first.'
+    echo
+    exit 1
+else
+    export DOCKTIE_DOCKER_COMPOSE_BIN
+fi
+
 export DOCKTIE_DOCKER_COMPOSE_FULLPATH="${DOCKERCOMPOSE_FULLPARENT_DIR}/docker-compose.yml"
 if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | grep -cv exit)" -gt 0 ]]; then
    if [[ "$DOCKTIE_INIT" = "true" ]]; then
