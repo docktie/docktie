@@ -22,7 +22,7 @@ after tool is configured and initialized.
 ~$ pwd
 /my/work/projects/
 
-~$ git clone https://github.com/icasimpan/docktie.git
+~$ git clone https://github.com/docktie/docktie.git
 ```
 
 2. Configure
