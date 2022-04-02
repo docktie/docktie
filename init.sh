@@ -9,12 +9,14 @@ if [[ "$DOCKTIE_DIR" != "../docktie" ]]; then
     echo "ERROR: 'init.sh' must be called from within project directory."
     exit 1
 else
-    DOCKTIE_DIR="$(dirname $(pwd))/docktie"
+    export DOCKTIE_COMMON_PARENTDIR="$(dirname $(pwd))"      ## for docktie-ext use
+    DOCKTIE_DIR="${DOCKTIE_COMMON_PARENTDIR}/docktie"
 fi
 
 ## Read project config
 ##
 PROJECT_ALIAS=${1:-"$(basename $(pwd))"}
+export PROJECT_ROOTDIR="${DOCKTIE_COMMON_PARENTDIR}/${PROJECT_ALIAS}" ## for docktie-ext use
 
 CONF_DIR="$DOCKTIE_DIR/conf"
 ENV_FILE="$CONF_DIR/${PROJECT_ALIAS}_env"
