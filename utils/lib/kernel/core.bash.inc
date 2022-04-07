@@ -1,19 +1,20 @@
 core() {
         autoload_functions "kernel/module/cli"
 
+        ## To allow exempting 'docktie_cli getx' per https://github.com/docktie/docktie/issues/27
+	script_name=$1
+        script_subcmd=$2
+	shift
+
 	## Environment checking dependent on init.sh being run ...
 	if [[ "$DOCKTIE_INIT" = "true" ]] && [[ -e $DOCKTIE_ENV ]]; then
 		. $DOCKTIE_ENV
 
 		DOCKER_COMPOSE_BIN="docker-compose -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH"
-	else
+	elif [[ "$script_name" != "docktie_cli" ]] || [[ "$script_subcmd" != "getx" ]]; then
 		echo 'ERROR: DockTie needs to be initialized.'
 		exit 1
 	fi
-
-	## Environment OK, proceed...
-	script_name=$1
-	shift
 
 	## Every util except "docktie_cli" needs a config...
 	SCRIPT_CONF="$DOCKTIE_UTILS_CONF/${script_name}.conf"
