@@ -3,6 +3,13 @@ cli() {
     local sub_cmd=${1:-"help"}; shift ## Get 1st parameter (defaults to 'help'). Then, pop-off from $*
           sub_cmd=${sub_cmd,,}        ## ...ensure parameter is lowercase.
 
+    ## DOCKTIE_COMMON_PARENTDIR is usually initialized when ../docktie/init.sh is run.
+    ## But since `docktie_cli getx` is allowed to run outside docktie_env, we need to
+    ## define it here
+    if [[ "$DOCKTIE_COMMON_PARENTDIR" = "" ]]; then
+        DOCKTIE_COMMON_PARENTDIR=$(dirname $(dirname $TOOL_ROOTDIR))
+    fi
+
     ## 'docktie_cli getx' don't need a container to run ...
     ##
     if [[ "$sub_cmd" != "getx" ]]; then
