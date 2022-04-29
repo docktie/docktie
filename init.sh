@@ -82,7 +82,8 @@ if [[ "$(docker-compose -f ${DOCKTIE_DOCKER_COMPOSE_FULLPATH} ps | tail -n +2 | 
 ##
 else
    if [[ "$AUTOSTART_PROJECT" = "1" ]]; then
-      $DOCKTIE_DOCKER_COMPOSE_BIN -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH up -d $SERVICES_TO_START
+      export DOCKTIE_SERVICES_TO_START="$DOCKTIE_SERVICES_TO_START" ## Needed in docker-compose wrapper
+      $DOCKTIE_DOCKER_COMPOSE_BIN -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH up -d $DOCKTIE_SERVICES_TO_START
       BOOTSTRAP_DOCKTIE
    else
        echo "ERROR: ${PROJECT_NAME} container(s) not running."

@@ -1,3 +1,11 @@
 #!/bin/bash
 
-$DOCKTIE_DOCKER_COMPOSE_BIN -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH $*
+COMMON_DOCKER_COMPOSE="$DOCKTIE_DOCKER_COMPOSE_BIN -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH"
+
+## Make sure to 'up' only services as specificed in conf/*_env file
+if [[ "$1" = 'up' ]]; then
+   shift
+   $COMMON_DOCKER_COMPOSE up $* $DOCKTIE_SERVICES_TO_START
+else
+   $COMMON_DOCKER_COMPOSE $*
+fi
