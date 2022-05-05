@@ -15,7 +15,8 @@ fi
 
 ## Read project config
 ##
-PROJECT_ALIAS=${1:-"$(basename $(pwd))"}
+## Remove underscore or dash from PROJECT_ALIAS per https://github.com/docktie/docktie/issues/31
+PROJECT_ALIAS=${1:-"$(basename $(pwd)|sed 's/[-_]//g')"}
 
 CONF_DIR="$DOCKTIE_DIR/conf"
 ENV_FILE="$CONF_DIR/${PROJECT_ALIAS}_env"
