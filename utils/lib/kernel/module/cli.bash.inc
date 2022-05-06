@@ -81,6 +81,10 @@ cli() {
            cli_getx $*
         ;;
 
+        env)
+           autoload_functions "${lib_relpath}/cli_env"
+           cli_env $*
+        ;;
         *)
            echo "Oops, unknown 'docktie_cli' sub-command"
         ;;

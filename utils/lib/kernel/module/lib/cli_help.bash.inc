@@ -7,6 +7,7 @@
 ##~    services     show project service names
 ##~    shell        shell-in to a one of your project containers
 ##~    list         shows all utilities available
+##~    env          shows relevant environment variables
 ##~
 cli_help() {
   autoload_functions "get_cmd_helptext"
