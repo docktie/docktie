@@ -17,6 +17,7 @@ fi
 ##
 ## Remove underscore or dash from PROJECT_ALIAS per https://github.com/docktie/docktie/issues/31
 PROJECT_ALIAS=${1:-"$(basename $(pwd)|sed 's/[-_]//g')"}
+REAL_PROJECT_DIRNAME=${1:-"$(basename $(pwd))"} ## TODO: Refactor as it is duplicating $PROJECT_ALIAS
 
 CONF_DIR="$DOCKTIE_DIR/conf"
 ENV_FILE="$CONF_DIR/${PROJECT_ALIAS}_env"
@@ -32,7 +33,7 @@ fi
 export DOCKTIE_ENV="$ENV_FILE"
 . $DOCKTIE_ENV
 
-export PROJECT_ROOTDIR="${DOCKTIE_COMMON_PARENTDIR}/${PROJECT_ALIAS}" ## for docktie-ext use
+export PROJECT_ROOTDIR="${DOCKTIE_COMMON_PARENTDIR}/${REAL_PROJECT_DIRNAME}" ## for docktie-ext use
 
 ## Implement https://github.com/icasimpan/docktie/issues/11
 ##           Add relative custom location of docker-compose.yml per project
@@ -66,6 +67,14 @@ BOOTSTRAP_DOCKTIE() {
       echo
       export PATH=$TOOLS_DIR:$PATH
       export DOCKER_CONTAINER_PREFIX=$DOCKER_CONTAINER_PREFIX  ## needed in ps1 change visibility done in next line
+
+      ## Add project-specific environment variables to export
+      ## Per https://github.com/docktie/docktie/issues/33
+      for each_env in $(grep -v "^#\|^$\|^PROJECT_NAME" $DOCKTIE_ENV|grep ^PROJECT_); do
+         ## TODO: Bug - cannot use shell variable in $each_env
+         export $(echo $each_env|sed "s|\(.*\)=\(.*\)|\1=$PROJECT_ROOTDIR/\2|g")
+      done
+
       bash --rcfile <(cat $CONF_DIR/ps1_changer)
       ## Below will run after 'exit' command
       echo "DockTie Dev Helper exited."
