@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## -------- source common library ---------
-PROJECT_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
-. $PROJECT_ROOTDIR/etc/controller.bash.inc
+SHCF_PLATFORM_ROOTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../ && pwd )"
+. $SHCF_PLATFORM_ROOTDIR/etc/controller.bash.inc
 
 
 ## list of functions to auto-load
