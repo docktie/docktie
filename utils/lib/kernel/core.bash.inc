@@ -7,9 +7,7 @@ core() {
 	shift
 
 	## Environment checking dependent on init.sh being run ...
-	if [[ "$DOCKTIE_INIT" = "true" ]] && [[ -e $DOCKTIE_ENV ]]; then
-		. $DOCKTIE_ENV
-
+	if [[ "$DOCKTIE_INIT" = "true" ]]; then
 		DOCKER_COMPOSE_BIN="docker-compose -f $DOCKTIE_DOCKER_COMPOSE_FULLPATH"
 	elif [[ "$script_name" != "docktie_cli" ]] || [[ "$script_subcmd" != "getx" ]]; then
 		echo 'ERROR: DockTie needs to be initialized.'
